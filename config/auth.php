@@ -40,11 +40,13 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
         //guard de los alumnos de gimnasios
         'member' => [
             'driver' => 'session',
             'provider' => 'members',
         ],
+
         //guard de los gimnasios
         'company' => [
             'driver' => 'session',
@@ -77,7 +79,7 @@ return [
 
         'companies' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Management\Customer::class,
         ]
 
         // 'users' => [
