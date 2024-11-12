@@ -19,6 +19,16 @@ class PermissionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getLabel(): ?string
+    {
+        return 'Permiso';
+    }
+
+    public static function getPluralLabel(): ?string
+    {
+        return 'Permisos';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -31,7 +41,14 @@ class PermissionResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nombre')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('description')
+                    ->label('Descripcion')
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //

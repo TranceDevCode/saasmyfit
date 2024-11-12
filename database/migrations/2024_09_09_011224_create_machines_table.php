@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('ubication');
             $table->date('year');
             $table->string('picture')->nullable();
-            $table->foreignId('machine_statuses_id')->constrained();
-            $table->foreignId('machine_types_id')->constrained();
+            //$table->foreignId('machine_statuses_id')->constrained();
+            //$table->foreignId('machine_types_id')->constrained();
             $table->foreignId('company_id')->constrained();
             $table->timestamps();
         });

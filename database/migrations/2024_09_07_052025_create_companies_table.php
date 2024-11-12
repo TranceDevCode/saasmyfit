@@ -15,14 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
+            $table->string('address')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
 
-        Schema::create('company_user', function(Blueprint $table) {
+        Schema::create('company_customer', function(Blueprint $table) {
             $table->foreignId('company_id')->constrained();
-            $table->foreignId('user_id')->constrained();
-            $table->primary(['company_id', 'user_id']);
+            $table->foreignId('customer_id')->constrained();
+            $table->primary(['company_id', 'customer_id']);
         });
 
         Schema::create('company_member', function(Blueprint $table) {
@@ -38,7 +39,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('company_user');
+        Schema::dropIfExists('company_customer');
         Schema::dropIfExists('company_member');
         Schema::dropIfExists('companies');
     }

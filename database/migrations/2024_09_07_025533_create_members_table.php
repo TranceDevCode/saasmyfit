@@ -33,9 +33,6 @@ return new class extends Migration
             $table->string('target')->nullable()->comment('Meta, definición-perder peso');
             $table->double('imc')->nullable()->comment('Indice de masa corporal');
             $table->string('profesion')->nullable();
-            /*  $table->double('folds')->nullable()->comment('medida de piel');
-             $table->double('waist')->nullable()->comment('medida de cintura');
-             $table->string('pathologies')->nullable()->comment('patologias'); */
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
