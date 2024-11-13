@@ -239,7 +239,9 @@ class MemberResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\PlansRelationManager::class,
+            RelationManagers\DietsRelationManager::class,
+            RelationManagers\RoutinesRelationManager::class,
         ];
     }
 

@@ -4,7 +4,7 @@ namespace App\Filament\Company\Resources;
 
 use App\Filament\Company\Resources\RoutineResource\Pages;
 use App\Filament\Company\Resources\RoutineResource\RelationManagers;
-use App\Models\Routine;
+use App\Models\Company\Routine;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -18,6 +18,8 @@ class RoutineResource extends Resource
     protected static ?string $model = Routine::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $tenantOwnershipRelationshipName = 'companies';
 
     public static function form(Form $form): Form
     {

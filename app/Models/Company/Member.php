@@ -6,6 +6,7 @@ use App\Models\Management\Commune;
 use App\Models\Management\Company;
 use App\Models\Management\Country;
 use App\Models\Management\Region;
+use Filament\Facades\Filament;
 use Filament\Models\Contracts\HasTenants;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -93,6 +94,20 @@ class Member extends Authenticatable implements HasTenants
         });
     }
 
+    //Variable Para almacenar el tenant
+    private ?Model $tenant = null;
+
+    //Funcion para obtener el tenant actual o del logeado
+    protected function getTenant(): Model
+    {
+        if($this->tenant === null) {
+            $this->tenant = Filament::getTenant();
+        }
+
+        //dd($this->tenant);
+        return $this->tenant;
+    }
+
     public function companies():BelongsToMany
     {
         return $this->belongsToMany(Company::class);
@@ -122,5 +137,22 @@ class Member extends Authenticatable implements HasTenants
     {
         return $this->belongsTo(Commune::class);
     }
+
+    public function plans(): BelongsToMany
+    {
+        return $this->belongsToMany(Plan::class)->where('company_id', $this->getTenant()->id);
+    }
+
+    public function diets(): BelongsToMany
+    {
+        return $this->belongsToMany(Diet::class)->where('company_id', $this->getTenant()->id);
+    }
+
+    public function routines(): BelongsToMany
+    {
+        return $this->belongsToMany(Routine::class, 'member_routine')->where('company_id', $this->getTenant()->id);
+    }
+
+
 
 }

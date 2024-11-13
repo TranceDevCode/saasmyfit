@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('member_plan', function (Blueprint $table) {
+        Schema::create('diet_member', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('diet_id')->constrained();
             $table->foreignId('member_id')->constrained();
-            $table->foreignId('plan_id')->constrained();
-            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('member_plan');
+        Schema::dropIfExists('diet_member');
     }
 };
