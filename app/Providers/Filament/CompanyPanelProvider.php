@@ -56,6 +56,7 @@ class CompanyPanelProvider extends PanelProvider
             ])
             ->maxContentWidth('full')
             ->spa()
+            ->databaseNotifications()
             ->authMiddleware([
                 Authenticate::class,
             ])

@@ -4,6 +4,7 @@ namespace App\Filament\Company\Resources;
 
 use App\Filament\Company\Resources\MemberResource\Pages;
 use App\Filament\Company\Resources\MemberResource\RelationManagers;
+use App\Filament\Exports\Company\MemberExporter;
 use App\Models\Company\Member;
 use App\Models\Management\Commune;
 use App\Models\Management\Region;
@@ -226,8 +227,13 @@ class MemberResource extends Resource
                             );
                     })
             ])
+            ->headerActions([
+                Tables\Actions\ExportAction::make()
+                    ->exporter(MemberExporter::class)
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                //Tables\Actions\ReplicateAction::make()
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
